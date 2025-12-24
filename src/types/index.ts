@@ -32,3 +32,65 @@ export interface Cliente {
   direccion: string;
   estado: string;
 }
+
+export interface Brand {
+  id?: number;
+  nombre: string;
+}
+
+export interface Provider {
+  id?: number;
+  ruc: string;
+  nombre: string;
+  apellido: string;
+  direccion: string;
+  telefono: string;
+  correo: string;
+  estado: string;
+}
+
+export interface Transportista {
+  id?: number;
+  ruc: string;
+  nombre: string;
+  apellido: string;
+  placa: string;
+}
+
+export interface Empleado {
+  id?: number;
+  nombre: string;
+  apellido: string;
+  direccion: string;
+  telefono: string;
+  correo: string;
+}
+
+export interface Guia {
+  id?: number;
+  empleado: string; // Store name/ID as needed. Screenshot shows names.
+  fecha: string;
+  tipo: "Ingreso" | "Salida";
+}
+
+export interface DetalleGuia {
+  id?: number;
+  guiaId: string; // Or number, but screenshots often show "1"
+  producto: string;
+  cantidad: number;
+}
+
+export interface GuiaIngreso {
+  id?: number;
+  guiaId: string;
+  proveedor: string;
+}
+
+export interface GuiaSalida {
+  id?: number;
+  guiaId: string;
+  cliente: string;
+  puertoPartida: string;
+  puertoLlegada: string;
+  transportista: string;
+}

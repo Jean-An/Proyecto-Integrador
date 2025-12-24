@@ -23,17 +23,17 @@ interface SidebarProps {
 export function Sidebar({ activePage, onNavigate, onLogout }: SidebarProps) {
   const menuItems = [
     { id: "inicio", label: "Inicio", icon: FaHome },
-    { id: "marcas", label: "Marcas", icon: FaTags },
+    { id: "brands", label: "Marcas", icon: FaTags },
     { id: "categorias", label: "Categorías", icon: FaTh },
     { id: "productos", label: "Productos", icon: FaBox },
     { id: "proveedores", label: "Proveedores", icon: FaTruck },
-    { id: "transportista", label: "Transportista", icon: FaTruck },
+    { id: "transporters", label: "Transportistas", icon: FaTruck },
     { id: "clientes", label: "Clientes", icon: FaUsers },
-    { id: "empleado", label: "Empleado", icon: FaUserTie },
-    { id: "guias", label: "Guías", icon: FaFileInvoice },
-    { id: "detalles-guia", label: "Detalles de Guía", icon: FaFileInvoice },
-    { id: "guias-ingreso", label: "Guías de Ingreso", icon: FaFileImport },
-    { id: "guias-salida", label: "Guías de Salida", icon: FaFileExport },
+    { id: "employees", label: "Empleados", icon: FaUserTie },
+    { id: "guides", label: "Guías", icon: FaFileInvoice },
+    { id: "guide-details", label: "Detalles de Guía", icon: FaFileInvoice },
+    { id: "entry-guides", label: "Guías de Ingreso", icon: FaFileImport },
+    { id: "exit-guides", label: "Guías de Salida", icon: FaFileExport },
   ];
 
   return (

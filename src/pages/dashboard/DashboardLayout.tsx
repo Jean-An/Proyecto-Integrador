@@ -13,6 +13,14 @@ export default function DashboardLayout() {
     if (path.includes("/dashboard/clients")) return "clientes";
     if (path.includes("/dashboard/products")) return "productos";
     if (path.includes("/dashboard/categories")) return "categorias";
+    if (path.includes("/dashboard/brands")) return "brands";
+    if (path.includes("/dashboard/providers")) return "proveedores";
+    if (path.includes("/dashboard/transporters")) return "transporters";
+    if (path.includes("/dashboard/employees")) return "employees";
+    if (path.includes("/dashboard/guide-details")) return "guide-details";
+    if (path.includes("/dashboard/entry-guides")) return "entry-guides";
+    if (path.includes("/dashboard/exit-guides")) return "exit-guides";
+    if (path.includes("/dashboard/guides")) return "guides";
     if (path === "/dashboard") return "inicio";
     return "";
   };
@@ -31,8 +39,31 @@ export default function DashboardLayout() {
       case "categorias":
         navigate("/dashboard/categories");
         break;
+      case "brands":
+        navigate("/dashboard/brands");
+        break;
+      case "proveedores":
+        navigate("/dashboard/providers");
+        break;
+      case "transporters":
+        navigate("/dashboard/transporters");
+        break;
+      case "employees":
+        navigate("/dashboard/employees");
+        break;
+      case "guides":
+        navigate("/dashboard/guides");
+        break;
+      case "guide-details":
+        navigate("/dashboard/guide-details");
+        break;
+      case "entry-guides":
+        navigate("/dashboard/entry-guides");
+        break;
+      case "exit-guides":
+        navigate("/dashboard/exit-guides");
+        break;
       default:
-        // Placeholder for other pages
         console.log("Navigating to", pageId);
     }
   };

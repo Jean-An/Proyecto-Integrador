@@ -1,9 +1,8 @@
-
 import { useState } from "react";
 import { FaPlus, FaEdit, FaSave, FaTag } from "react-icons/fa";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "../../services/db"
-import type { Category } from "../../types";
+import type { Brand } from "../../types";
 import { DataTable } from "../../components/ui/data-table";
 import { PageHeader } from "../../components/ui/PageHeader";
 import { ActionBar } from "../../components/ui/ActionBar";
@@ -11,55 +10,55 @@ import { Modal } from "../../components/ui/Modal";
 import { Input } from "../../components/ui/input";
 import { Button } from "../../components/ui/button";
 
-export function CategoriasPage() {
+export function BrandsPage() {
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
-  const [selectedCategoria, setSelectedCategoria] = useState<Category | null>(null);
+  const [selectedBrand, setSelectedBrand] = useState<Brand | null>(null);
   const [searchId, setSearchId] = useState("");
-  const [nombreCategoria, setNombreCategoria] = useState("");
+  const [nombreMarca, setNombreMarca] = useState("");
   
-  // Replace mock state with live query from Dexie
-  const categorias = useLiveQuery(() => db.categorias.toArray());
+  // Use live query from Dexie
+  const marcas = useLiveQuery(() => db.marcas.toArray());
 
   const handleGuardar = async () => {
-    if (nombreCategoria.trim()) {
+    if (nombreMarca.trim()) {
       try {
-        await db.categorias.add({
-          nombre: nombreCategoria,
+        await db.marcas.add({
+          nombre: nombreMarca,
         });
-        setNombreCategoria("");
+        setNombreMarca("");
         setShowCreateModal(false);
       } catch (error) {
-        console.error("Error al guardar categoría:", error);
-        alert("Error al guardar la categoría");
+        console.error("Error al guardar marca:", error);
+        alert("Error al guardar la marca");
       }
     }
   };
 
-  const handleEdit = (categoria: Category) => {
-    setSelectedCategoria(categoria);
-    setNombreCategoria(categoria.nombre);
+  const handleEdit = (marca: Brand) => {
+    setSelectedBrand(marca);
+    setNombreMarca(marca.nombre);
     setShowEditModal(true);
   };
 
   const handleUpdate = async () => {
-    if (selectedCategoria?.id && nombreCategoria.trim()) {
+    if (selectedBrand?.id && nombreMarca.trim()) {
       try {
-        await db.categorias.update(selectedCategoria.id, {
-          nombre: nombreCategoria,
+        await db.marcas.update(selectedBrand.id, {
+          nombre: nombreMarca,
         });
-        setNombreCategoria("");
-        setSelectedCategoria(null);
+        setNombreMarca("");
+        setSelectedBrand(null);
         setShowEditModal(false);
       } catch (error) {
-        console.error("Error al actualizar categoría:", error);
-        alert("Error al actualizar la categoría");
+        console.error("Error al actualizar marca:", error);
+        alert("Error al actualizar la marca");
       }
     }
   };
 
-  const filteredCategorias = (categorias || []).filter((cat) => 
-    searchId ? cat.id?.toString() === searchId : true
+  const filteredMarcas = (marcas || []).filter((marca) => 
+    searchId ? marca.id?.toString() === searchId : true
   );
 
 
@@ -70,8 +69,8 @@ export function CategoriasPage() {
         onClick={() => {
           setShowCreateModal(false);
           setShowEditModal(false);
-          setSelectedCategoria(null);
-          setNombreCategoria("");
+          setSelectedBrand(null);
+          setNombreMarca("");
         }}
       >
         Cancelar
@@ -95,43 +94,44 @@ export function CategoriasPage() {
   return (
     <div className="page-container">
       <PageHeader
-        title="Categorías"
-        description="Administra las categorías de productos del sistema"
+        title="Marcas"
+        description="Administra las marcas de productos del sistema"
         actionElement={
           <button
             className="btn-primary-action"
             onClick={() => setShowCreateModal(true)}
           >
             <FaPlus size={20} />
-            Nueva Categoría
+            Nueva Marca
           </button>
         }
       />
 
       <ActionBar
-        title="Buscar Categoría por ID"
+        title="Buscar Marca por ID"
         searchVal={searchId}
         setSearchVal={setSearchId}
-        placeholder="Ingrese el ID de la categoría..."
+        placeholder="Ingrese el ID de la marca..."
         onSearch={() => {}}
         onClear={() => setSearchId("")}
       />
 
       <div className="table-wrapper">
+
         <DataTable
-          data={filteredCategorias}
+          data={filteredMarcas}
           columns={[
             {
               header: "ID",
               accessorKey: "id",
-              cell: (item: Category) => (
+              cell: (item: Brand) => (
                 <span style={{ fontWeight: 600, color: "var(--muted-foreground)" }}>#{item.id}</span>
               ),
             },
             {
               header: "Nombre",
               accessorKey: "nombre",
-              cell: (item: Category) => (
+              cell: (item: Brand) => (
                 <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
                   <div
                     style={{
@@ -157,7 +157,7 @@ export function CategoriasPage() {
             {
               header: "Acciones",
               align: "right",
-              cell: (item: Category) => (
+              cell: (item: Brand) => (
                 <button
                   onClick={() => handleEdit(item)}
                   style={{
@@ -188,8 +188,8 @@ export function CategoriasPage() {
       <Modal
         isOpen={showCreateModal}
         onClose={() => setShowCreateModal(false)}
-        title="Nueva Categoría"
-        description="Ingresa la información de la categoría"
+        title="Nueva Marca"
+        description="Ingresa la información de la marca"
         icon={
           <div style={{
             width: "100%", height: "100%", 
@@ -204,13 +204,13 @@ export function CategoriasPage() {
       >
         <div>
           <label className="block text-sm font-semibold mb-2">
-            Nombre de la Categoría
+            Nombre de la Marca
             <span style={{ color: "#dc2626", marginLeft: "4px" }}>*</span>
           </label>
           <Input
-            value={nombreCategoria}
-            onChange={(e) => setNombreCategoria(e.target.value)}
-            placeholder="Ej: Electrodomésticos"
+            value={nombreMarca}
+            onChange={(e) => setNombreMarca(e.target.value)}
+            placeholder="Ej: Samsung"
           />
         </div>
       </Modal>
@@ -219,10 +219,10 @@ export function CategoriasPage() {
         isOpen={showEditModal}
         onClose={() => {
           setShowEditModal(false);
-          setSelectedCategoria(null);
+          setSelectedBrand(null);
         }}
-        title="Editar Categoría"
-        description="Modificar información de la categoría"
+        title="Editar Marca"
+        description="Modificar información de la marca"
         icon={
           <div style={{
             width: "100%", height: "100%", 
@@ -237,13 +237,13 @@ export function CategoriasPage() {
       >
         <div>
           <label className="block text-sm font-semibold mb-2">
-            Nombre de la Categoría
+            Nombre de la Marca
             <span style={{ color: "#dc2626", marginLeft: "4px" }}>*</span>
           </label>
           <Input
-            value={nombreCategoria}
-            onChange={(e) => setNombreCategoria(e.target.value)}
-            placeholder="Ej: Electrodomésticos"
+            value={nombreMarca}
+            onChange={(e) => setNombreMarca(e.target.value)}
+            placeholder="Ej: Samsung"
           />
         </div>
       </Modal>

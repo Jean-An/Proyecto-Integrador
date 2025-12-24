@@ -220,3 +220,234 @@ h1, h2, h3, h4, h5, h6 {
 
 
 
+
+/* Tables */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 0.75rem; /* rounded-xl */
+  border: 1px solid var(--border);
+  background-color: var(--card);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  min-width: 800px; /* Prevent squishing on small screens */
+}
+
+.table-header {
+  background: linear-gradient(135deg, #1a1a1a, #262626);
+  border-bottom: 2px solid rgba(220, 38, 38, 0.3);
+}
+
+.table-th {
+  padding: 1.25rem 1.5rem; /* 20px 24px */
+  text-align: left;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.table-row {
+  border-bottom: 1px solid var(--border);
+  transition: background-color 0.2s;
+}
+
+.table-row:hover {
+  background-color: rgba(59, 130, 246, 0.05);
+}
+
+.table-cell {
+  padding: 1.25rem 1.5rem;
+  vertical-align: middle;
+  color: var(--foreground);
+}
+
+.table-cell-muted {
+  color: var(--muted-foreground);
+}
+
+.empty-state {
+  padding: 4rem;
+  text-align: center;
+  color: var(--muted-foreground);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* --- Standard Page Layout --- */
+
+.page-container {
+  padding: 40px;
+  min-height: 100vh;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  padding-bottom: 24px;
+  border-bottom: 2px solid rgba(220, 38, 38, 0.2);
+  position: relative;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #dc2626, #ef4444);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent; /* fallback */
+  margin-bottom: 8px;
+  margin-top: 0;
+}
+
+.page-subtitle {
+  color: var(--muted-foreground);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.action-bar {
+  background-color: var(--card);
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border);
+}
+
+.action-bar-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.action-bar-title h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin: 0;
+}
+
+.icon-wrapper {
+  padding: 10px;
+  background-color: rgba(59, 130, 246, 0.1);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-container {
+  display: flex;
+  gap: 12px;
+}
+
+.search-input-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+.search-input {
+  width: 100%;
+  padding: 14px 16px;
+  padding-left: 44px;
+  background-color: var(--secondary);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  color: var(--foreground);
+  font-size: 0.95rem;
+  transition: all 0.2s;
+  outline: none;
+}
+
+.search-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted-foreground);
+}
+
+/* Primary Action Button (Create) */
+.btn-primary-action {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 16px -4px rgba(59, 130, 246, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+}
+
+.btn-primary-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -4px rgba(59, 130, 246, 0.5);
+}
+
+/* Secondary Action Button (Search, Filter) */
+.btn-secondary-action {
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: all 0.2s;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  border: none;
+  cursor: pointer;
+}
+
+.btn-secondary-action:hover {
+  transform: translateY(-1px);
+}
+
+.btn-outline-action {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 24px;
+  background-color: var(--secondary);
+  color: var(--foreground);
+  border-radius: 10px;
+  font-weight: 600;
+  border: 2px solid var(--border);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.btn-outline-action:hover {
+  background-color: var(--sidebar-accent);
+  border-color: #dc2626;
+}
+
+.table-wrapper {
+  background-color: var(--card);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border);
+}

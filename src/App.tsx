@@ -6,6 +6,14 @@ import DashboardLayout from "./pages/dashboard/DashboardLayout";
 import { ClientesPage } from "./pages/dashboard/ClientsPage";
 import { ProductosPage } from "./pages/dashboard/ProductsPage";
 import { CategoriasPage } from "./pages/dashboard/CategoriesPage";
+import { BrandsPage } from "./pages/dashboard/BrandsPage";
+import { ProvidersPage } from "./pages/dashboard/ProvidersPage";
+import { TransportersPage } from "./pages/dashboard/TransportersPage";
+import { EmployeesPage } from "./pages/dashboard/EmployeesPage";
+import { GuidesPage } from "./pages/dashboard/GuidesPage";
+import { GuideDetailsPage } from "./pages/dashboard/GuideDetailsPage";
+import { EntryGuidesPage } from "./pages/dashboard/EntryGuidesPage";
+import { ExitGuidesPage } from "./pages/dashboard/ExitGuidesPage";
 import { WelcomeSection } from "./components/dashboard/WelcomeSection";
 import "./App.css";
 
@@ -36,6 +44,14 @@ function App() {
             <Route path="clients" element={<ClientesPage />} />
             <Route path="products" element={<ProductosPage />} />
             <Route path="categories" element={<CategoriasPage />} />
+            <Route path="brands" element={<BrandsPage />} />
+            <Route path="providers" element={<ProvidersPage />} />
+            <Route path="transporters" element={<TransportersPage />} />
+            <Route path="employees" element={<EmployeesPage />} />
+            <Route path="guides" element={<GuidesPage />} />
+            <Route path="guide-details" element={<GuideDetailsPage />} />
+            <Route path="entry-guides" element={<EntryGuidesPage />} />
+            <Route path="exit-guides" element={<ExitGuidesPage />} />
           </Route>
         </Routes>
       </Router>
