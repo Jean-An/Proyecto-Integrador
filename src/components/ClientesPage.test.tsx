@@ -1,7 +1,7 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { ClientesPage } from "../components/clientes";
-import { db } from "../db";
+import { ClientesPage } from "../pages/dashboard/ClientsPage";
+import { db } from "../services/db";
 
 // Mock Dexie
 vi.mock("../db", () => {

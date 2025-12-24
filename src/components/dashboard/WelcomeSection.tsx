@@ -7,11 +7,7 @@ import {
   FaChartLine,
 } from "react-icons/fa";
 
-interface WelcomeSectionProps {
-  activePage: string;
-}
-
-export function WelcomeSection({ activePage }: WelcomeSectionProps) {
+export function WelcomeSection() {
   const stats = [
     {
       label: "Productos",
@@ -39,42 +35,7 @@ export function WelcomeSection({ activePage }: WelcomeSectionProps) {
     },
   ];
 
-  if (activePage !== "inicio") {
-    // Placeholder for other pages to keep the "Under Construction" look consistent
-    return (
-      <div style={{ padding: "32px" }}>
-        <div
-          className="glass-panel"
-          style={{
-            padding: "48px",
-            borderRadius: "var(--radius)",
-            textAlign: "center",
-            backgroundColor: "rgba(255, 255, 255, 0.8)",
-          }}
-        >
-          <h2
-            style={{
-              fontSize: "2.25rem",
-              fontWeight: "bold",
-              color: "var(--foreground)",
-              marginBottom: "16px",
-              textTransform: "uppercase",
-            }}
-          >
-            {activePage.replace("-", " ")}
-          </h2>
-          <p
-            style={{
-              color: "var(--muted-foreground)",
-              fontSize: "1.125rem",
-            }}
-          >
-            Sección en desarrollo
-          </p>
-        </div>
-      </div>
-    );
-  }
+
 
   return (
     <div

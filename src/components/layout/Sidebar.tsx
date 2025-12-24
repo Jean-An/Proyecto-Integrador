@@ -1,4 +1,5 @@
-import {
+
+import { 
   FaHome,
   FaTags,
   FaTh,
@@ -9,8 +10,9 @@ import {
   FaFileInvoice,
   FaFileImport,
   FaFileExport,
-  FaSignOutAlt,
-} from "react-icons/fa";
+  FaSignOutAlt 
+} from "react-icons/fa"
+// import { useAuth } from "../../context/AuthContext";
 
 interface SidebarProps {
   activePage: string;

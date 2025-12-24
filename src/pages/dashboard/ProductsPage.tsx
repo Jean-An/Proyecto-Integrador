@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { FaPlus, FaEdit, FaSearch, FaList, FaSave, FaBox, FaTimes } from "react-icons/fa";
 import { useLiveQuery } from "dexie-react-hooks";
-import { db, type Product } from "../db";
+import { db } from "../../services/db"
+import type { Product } from "../../types";
 
 export function ProductosPage() {
   const [showCreateModal, setShowCreateModal] = useState(false);

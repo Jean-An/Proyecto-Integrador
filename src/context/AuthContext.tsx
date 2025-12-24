@@ -1,8 +1,10 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
-import { db, type User } from "../db";
+import { db } from "../services/db";
+import type { User } from "../types";
 
 interface AuthContextType {
   user: User | null;
+  isAuthenticated: boolean;
   login: (email: string, password: string) => Promise<boolean>;
   register: (name: string, email: string, password: string) => Promise<boolean>;
   logout: () => void;
@@ -14,6 +16,8 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  const isAuthenticated = !!user;
 
   // Optional: Check if there's a stored "session" (e.g. ID in localStorage) to auto-login
   // For now, we start logged out on refresh unless we implement persistence.
@@ -68,7 +72,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout, isLoading }}>
+    <AuthContext.Provider value={{ user, isAuthenticated, login, register, logout, isLoading }}>
       {children}
     </AuthContext.Provider>
   );

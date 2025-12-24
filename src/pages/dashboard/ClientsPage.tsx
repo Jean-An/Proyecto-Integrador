@@ -3,7 +3,8 @@
 import { useState } from "react"
 import { FaPlus, FaEdit, FaSearch, FaList, FaUser, FaEnvelope, FaPhone, FaMapMarkerAlt, FaCreditCard, FaTimes, FaSave } from "react-icons/fa"
 import { useLiveQuery } from "dexie-react-hooks"
-import { db, type Cliente } from "../db"
+import { db } from "../../services/db"
+import type { Cliente } from "../../types"
 
 export function ClientesPage() {
   const [showCreateModal, setShowCreateModal] = useState(false)

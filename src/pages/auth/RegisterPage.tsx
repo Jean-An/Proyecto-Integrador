@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { useAuth } from "../context/AuthContext";
+import { useState } from "react";
+import { useAuth } from "../../context/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
-import { Button } from "../components/ui/button";
-import { Input } from "../components/ui/input";
+import { Button } from "../../components/ui/button";
+import { Input } from "../../components/ui/input";
 import {
   Card,
   CardContent,
@@ -10,34 +10,41 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "../components/ui/card";
+} from "../../components/ui/card";
 import { FaChartLine } from "react-icons/fa";
 
-const Login: React.FC = () => {
+const Register: React.FC = () => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-  const { login, isLoading } = useAuth();
+  const { register, isLoading } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
 
-    if (!email || !password) {
+    if (!name || !email || !password || !confirmPassword) {
       setError("Por favor complete todos los campos");
       return;
     }
 
+    if (password !== confirmPassword) {
+      setError("Las contraseñas no coinciden");
+      return;
+    }
+
     try {
-      const success = await login(email, password);
+      const success = await register(name, email, password);
       if (success) {
-        navigate("/dashboard");
+        navigate("/"); // Redirect to login after successful registration
       } else {
-        setError("Credenciales inválidas");
+        setError("Error al registrar usuario");
       }
     } catch (err) {
-      setError("Ocurrió un error al iniciar sesión");
+      setError("Ocurrió un error en el registro");
     }
   };
 
@@ -83,9 +90,9 @@ const Login: React.FC = () => {
               </span>
             </div>
           </div>
-          <CardTitle style={{ fontSize: "1.5rem" }}>Bienvenido</CardTitle>
+          <CardTitle style={{ fontSize: "1.5rem" }}>Crear Cuenta</CardTitle>
           <CardDescription>
-            Ingresa tus credenciales para acceder al panel
+            Regístrate para comenzar a usar el sistema
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -106,6 +113,15 @@ const Login: React.FC = () => {
             )}
             <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
               <Input
+                type="text"
+                placeholder="Nombre completo"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                disabled={isLoading}
+              />
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+              <Input
                 type="email"
                 placeholder="Correo electrónico"
                 value={email}
@@ -122,23 +138,32 @@ const Login: React.FC = () => {
                 disabled={isLoading}
               />
             </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+              <Input
+                type="password"
+                placeholder="Confirmar contraseña"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                disabled={isLoading}
+              />
+            </div>
             <Button type="submit" className="w-full" disabled={isLoading} style={{ width: "100%" }}>
-              {isLoading ? "Ingresando..." : "Iniciar Sesión"}
+              {isLoading ? "Registrando..." : "Registrarse"}
             </Button>
           </form>
         </CardContent>
         <CardFooter style={{ justifyContent: "center" }}>
           <div style={{ fontSize: "0.875rem", color: "var(--muted-foreground)" }}>
-            ¿No tienes una cuenta?{" "}
+            ¿Ya tienes una cuenta?{" "}
             <Link
-              to="/register"
+              to="/"
               style={{
                 color: "var(--primary)",
                 textDecoration: "underline",
                 fontWeight: "500",
               }}
             >
-              Regístrate aquí
+              Inicia sesión aquí
             </Link>
           </div>
         </CardFooter>
@@ -147,4 +172,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default Register;

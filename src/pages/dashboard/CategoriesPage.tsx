@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { FaPlus, FaTimes, FaEdit, FaSearch, FaList, FaSave, FaTag } from "react-icons/fa";
 import { useLiveQuery } from "dexie-react-hooks";
-import { db, type Category } from "../db";
+import { db } from "../../services/db"
+import type { Category } from "../../types";
 
 export function CategoriasPage() {
   const [showCreateModal, setShowCreateModal] = useState(false);
