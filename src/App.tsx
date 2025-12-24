@@ -16,8 +16,10 @@ import { EntryGuidesPage } from "./pages/dashboard/EntryGuidesPage";
 import { ExitGuidesPage } from "./pages/dashboard/ExitGuidesPage";
 import { WelcomeSection } from "./components/dashboard/WelcomeSection";
 import "./App.css";
-
+import { useEffect } from "react";
+import { syncDatabase } from "./services/sync";
 import type { ReactNode } from "react";
+
 // Protected Route Component
 const PrivateRoute = ({ children }: { children: ReactNode }) => {
   const { isAuthenticated } = useAuth();
@@ -25,6 +27,10 @@ const PrivateRoute = ({ children }: { children: ReactNode }) => {
 };
 
 function App() {
+  useEffect(() => {
+    syncDatabase();
+  }, []);
+
   return (
     <AuthProvider>
       <Router>

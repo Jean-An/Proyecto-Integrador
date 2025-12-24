@@ -8,8 +8,8 @@ import { DataTable } from "../../components/ui/data-table";
 import { PageHeader } from "../../components/ui/PageHeader";
 import { ActionBar } from "../../components/ui/ActionBar";
 import { Modal } from "../../components/ui/Modal";
-import { Input } from "../../components/ui/input";
 import { Button } from "../../components/ui/button";
+import { ProductForm } from "../../components/dashboard/ProductForm";
 
 export function ProductosPage() {
   const [showCreateModal, setShowCreateModal] = useState(false);
@@ -279,7 +279,9 @@ export function ProductosPage() {
                     onClick={() => handleToggleStatus(item)}
                     style={{
                       display: "inline-block",
-                      padding: "6px 14px",
+                      width: "120px",
+                      textAlign: "center",
+                      padding: "6px 0",
                       backgroundColor:
                         item.estado === "Activo" ? "rgba(59, 130, 246, 0.15)" : "rgba(107, 114, 128, 0.15)",
                       color: item.estado === "Activo" ? "#3b82f6" : "#6b7280",
@@ -354,100 +356,7 @@ export function ProductosPage() {
         }
         footer={renderFooter(handleGuardar, "Guardar")}
       >
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
-            <div>
-            <label className="block text-sm font-semibold mb-2">
-                Nombre<span style={{ color: "#dc2626" }}>*</span>
-            </label>
-            <Input
-                value={formData.nombre}
-                onChange={(e) =>
-                setFormData({ ...formData, nombre: e.target.value })
-                }
-            />
-            </div>
-            <div>
-            <label className="block text-sm font-semibold mb-2">
-                Marca<span style={{ color: "#dc2626" }}>*</span>
-            </label>
-            <Input
-                value={formData.marca}
-                onChange={(e) =>
-                setFormData({ ...formData, marca: e.target.value })
-                }
-            />
-            </div>
-            <div style={{ gridColumn: "1 / -1" }}>
-            <label className="block text-sm font-semibold mb-2">
-                Descripción<span style={{ color: "#dc2626" }}>*</span>
-            </label>
-            <textarea
-                value={formData.descripcion}
-                onChange={(e) =>
-                setFormData({ ...formData, descripcion: e.target.value })
-                }
-                style={{
-                width: "100%",
-                padding: "12px 14px",
-                backgroundColor: "var(--secondary)",
-                border: "2px solid var(--border)",
-                borderRadius: "10px",
-                color: "var(--foreground)",
-                fontSize: "0.9rem",
-                minHeight: "80px",
-                resize: "vertical",
-                fontFamily: "inherit",
-                }}
-            />
-            </div>
-            <div>
-            <label className="block text-sm font-semibold mb-2">
-                Categoría<span style={{ color: "#dc2626" }}>*</span>
-            </label>
-            <Input
-                value={formData.categoria}
-                onChange={(e) =>
-                setFormData({ ...formData, categoria: e.target.value })
-                }
-            />
-            </div>
-            <div>
-            <label className="block text-sm font-semibold mb-2">
-                Ubicación<span style={{ color: "#dc2626" }}>*</span>
-            </label>
-            <Input
-                value={formData.ubicacion}
-                onChange={(e) =>
-                setFormData({ ...formData, ubicacion: e.target.value })
-                }
-            />
-            </div>
-            <div>
-            <label className="block text-sm font-semibold mb-2">
-                Stock<span style={{ color: "#dc2626" }}>*</span>
-            </label>
-            <Input
-                type="number"
-                value={formData.stock}
-                onChange={(e) =>
-                setFormData({ ...formData, stock: e.target.value })
-                }
-            />
-            </div>
-            <div>
-            <label className="block text-sm font-semibold mb-2">
-                Precio<span style={{ color: "#dc2626" }}>*</span>
-            </label>
-            <Input
-                type="number"
-                step="0.01"
-                value={formData.precio}
-                onChange={(e) =>
-                setFormData({ ...formData, precio: e.target.value })
-                }
-            />
-            </div>
-        </div>
+        <ProductForm formData={formData} onChange={setFormData} />
       </Modal>
 
       <Modal
@@ -471,100 +380,7 @@ export function ProductosPage() {
         }
         footer={renderFooter(handleUpdate, "Actualizar", true)}
       >
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
-            <div>
-            <label className="block text-sm font-semibold mb-2">
-                Nombre<span style={{ color: "#dc2626" }}>*</span>
-            </label>
-            <Input
-                value={formData.nombre}
-                onChange={(e) =>
-                setFormData({ ...formData, nombre: e.target.value })
-                }
-            />
-            </div>
-            <div>
-            <label className="block text-sm font-semibold mb-2">
-                Marca<span style={{ color: "#dc2626" }}>*</span>
-            </label>
-            <Input
-                value={formData.marca}
-                onChange={(e) =>
-                setFormData({ ...formData, marca: e.target.value })
-                }
-            />
-            </div>
-            <div style={{ gridColumn: "1 / -1" }}>
-            <label className="block text-sm font-semibold mb-2">
-                Descripción<span style={{ color: "#dc2626" }}>*</span>
-            </label>
-            <textarea
-                value={formData.descripcion}
-                onChange={(e) =>
-                setFormData({ ...formData, descripcion: e.target.value })
-                }
-                style={{
-                width: "100%",
-                padding: "12px 14px",
-                backgroundColor: "var(--secondary)",
-                border: "2px solid var(--border)",
-                borderRadius: "10px",
-                color: "var(--foreground)",
-                fontSize: "0.9rem",
-                minHeight: "80px",
-                resize: "vertical",
-                fontFamily: "inherit",
-                }}
-            />
-            </div>
-            <div>
-            <label className="block text-sm font-semibold mb-2">
-                Categoría<span style={{ color: "#dc2626" }}>*</span>
-            </label>
-            <Input
-                value={formData.categoria}
-                onChange={(e) =>
-                setFormData({ ...formData, categoria: e.target.value })
-                }
-            />
-            </div>
-            <div>
-            <label className="block text-sm font-semibold mb-2">
-                Ubicación<span style={{ color: "#dc2626" }}>*</span>
-            </label>
-            <Input
-                value={formData.ubicacion}
-                onChange={(e) =>
-                setFormData({ ...formData, ubicacion: e.target.value })
-                }
-            />
-            </div>
-            <div>
-            <label className="block text-sm font-semibold mb-2">
-                Stock<span style={{ color: "#dc2626" }}>*</span>
-            </label>
-            <Input
-                type="number"
-                value={formData.stock}
-                onChange={(e) =>
-                setFormData({ ...formData, stock: e.target.value })
-                }
-            />
-            </div>
-            <div>
-            <label className="block text-sm font-semibold mb-2">
-                Precio<span style={{ color: "#dc2626" }}>*</span>
-            </label>
-            <Input
-                type="number"
-                step="0.01"
-                value={formData.precio}
-                onChange={(e) =>
-                setFormData({ ...formData, precio: e.target.value })
-                }
-            />
-            </div>
-        </div>
+        <ProductForm formData={formData} onChange={setFormData} />
       </Modal>
     </div>
   );
