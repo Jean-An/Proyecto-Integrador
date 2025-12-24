@@ -4,7 +4,7 @@ import { ClientesPage } from "../pages/dashboard/ClientsPage";
 import { db } from "../services/db";
 
 // Mock Dexie
-vi.mock("../db", () => {
+vi.mock("../services/db", () => {
     return {
         db: {
             clientes: {
